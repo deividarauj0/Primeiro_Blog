@@ -11,7 +11,7 @@ module Blog01
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0
 
-    config.i18n.default_locale = "pt_BR"
+    config.i18n.default_locale = :"pt-BR"
     config.time_zone = "Brasilia"
   end
 end
