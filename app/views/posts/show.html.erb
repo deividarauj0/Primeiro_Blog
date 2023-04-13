@@ -1,10 +1,43 @@
-<p style="color: green"><%= notice %></p>
+<div class="shadow bg-light p-5 rounded">
+  <div class="text-center mb-5">
+    <h1><%= @post.title %></h1>
 
-<%= render @post %>
+    <p class="text-muted">
+      <strong>Por <%= @post.author %></strong><br>
+      <%= l @post.created_at, format: '%d/%m/%Y' %>
+    </p>
+  </div> 
 
-<div>
-  <%= link_to "Edit this post", edit_post_path(@post) %> |
-  <%= link_to "Back to posts", posts_path %>
+  <div class="px-5">
+    <%= @post.body.gsub("\n", "<br>").html_safe %>
+  </div>
+</div>
 
-  <%= button_to "Destroy this post", @post, method: :delete %>
+<div class="m-5">
+    <div class="text-center">
+        <h4>
+            <%= pluralize(@post.comments.count, "Comentário") %>
+
+            <% if @post.comments.none? %>
+              <span class="badge bg-success">Seja o primeiro a comentar!</span>
+            <% end %>
+        </h4>
+    </div>
+    <%= form_with model: @comment, local: true do |form| %>
+      <%= form.hidden_field :post_id, value: @post.id %>
+
+      <div class="form-group mb-2">
+        <%= form.label :author %>
+        <%= form.text_field :author, class: "form-control" %>
+      </div>
+
+      <div class="form-group mb-2">
+        <%= form.label :body %>
+        <%= form.text_area :body, class: "form-control", rows: 3 %>
+      </div>
+
+      <%= form.submit "Enviar", class: "btn btn-primary", data: { disable_with: "Enviando..." } %>
+    <% end %>
+
+      </div>
 </div>
