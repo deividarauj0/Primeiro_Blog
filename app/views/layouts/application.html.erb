@@ -32,6 +32,21 @@
           <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
       <% end %>
+
+      <div class="row">
+        <div class="col-4 offset-8">
+          <div class="search">
+            <%= form_with url: search_posts_path, method: :get, local: true, class: "form-inline" do |form| %>
+              <div class="d-flex form-group mx-3 mb-3" >
+                <%= form.search_field :q, class: "form-control", required: true,
+                  placeholder: "Pesquisar", value: params[:q] %>
+                <%= form.submit "Buscar", class: "btn btn-primary ms-2",
+                  data: { disable_with: "Buscando..." } %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
       <%= yield %>
     </div>
 

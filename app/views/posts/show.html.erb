@@ -30,12 +30,12 @@
 
       <div class="form-group mb-2">
         <%= form.label :author %>
-        <%= form.text_field :author, class: "form-control" %>
+        <%= form.text_field :author, class: "form-control", required: true %>
       </div>
 
       <div class="form-group mb-2">
         <%= form.label :body %>
-        <%= form.text_area :body, class: "form-control", rows: 3 %>
+        <%= form.text_area :body, class: "form-control", required: true, rows: 3 %>
       </div>
 
       <%= form.submit "Enviar", class: "btn btn-primary", data: { disable_with: "Enviando..." } %>
